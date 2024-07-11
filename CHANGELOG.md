@@ -4,9 +4,21 @@ FEATURES:
 
 IMPROVEMENTS:
 
+- core: Always downcase type value when getting digest for checksum calculation [GH-13471]
+- guest/debian: Fix NFS install capability to prevent hang on install [GH-13411]
+- kernel_v2/config: Add warning for IPv6 address ending with :1 [GH-13362]
+- provider/docker: Properly match container ID when trailing output is present [GH-13475]
+- provider/virtualbox: Handling warnings in output when detecting version [GH-13394]
+- synced_folder/nfs: Output mounting entry [GH-13383]
+- synced_folder/smb: Adjust ordering in mount entry output [GH-13383]
+
 BUG FIXES:
 
-- provider/docker: Prevent error if network configuration data is missing [GH-13337]
+- command/cloud: Fix provider upload [GH-13467]
+- provider/docker: Prevent error if network configuration data is missing [GH-13337, GH-13373]
+- provider/hyperv: Fix configure disks capability [GH-13346]
+- provisioner/ansible: Fix version detection [GH-13375]
+- synced_folder/nfs: Fix upstart detection [GH-13409]
 
 VAGRANT-GO:
 

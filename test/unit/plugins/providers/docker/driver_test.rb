@@ -217,6 +217,17 @@ describe VagrantPlugins::DockerProvider::Driver do
 
         expect(container_id).to eq(cid)
       end
+
+      context "if output contains extra trailing information" do
+        let(:stdout) { "1a2b3c4d5e6f7g8h9i10j11k12l13m14n16o17p18q19r20s21t22u23v24w25x2\nextra content\n" }
+        it "builds a container with podman emulating docker CLI" do
+          allow(subject).to receive(:podman?).and_return(true)
+
+          container_id = subject.build("/tmp/fakedir")
+
+          expect(container_id).to eq(cid)
+        end
+      end
     end
   end
 
@@ -696,6 +707,50 @@ describe VagrantPlugins::DockerProvider::Driver do
               "Driver": "default",
               "Options": nil,
             },
+            "Internal": false,
+            "Attachable": false,
+            "Ingress": false,
+            "ConfigFrom": {
+              "Network": ""
+            },
+            "ConfigOnly": false,
+            "Containers": {
+              "a1ee9b12bcea8268495b1f43e8d1285df1925b7174a695075f6140adb9415d87": {
+                "Name": "vagrant-sandbox_docker-1_1553116237",
+                "EndpointID": "fc1b0ed6e4f700cf88bb26a98a0722655191542e90df3e3492461f4d1f3c0cae",
+                "MacAddress": "02:42:ac:11:00:02",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+              },
+              "Options": {
+                "com.docker.network.bridge.default_bridge": "true",
+                "com.docker.network.bridge.enable_icc": "true",
+                "com.docker.network.bridge.enable_ip_masquerade": "true",
+                "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+                "com.docker.network.bridge.name": "docker0",
+                "com.docker.network.driver.mtu": "1500"
+              },
+              "Labels": {}
+            },
+          }
+        ].to_json
+      end
+
+      it "should not raise an error" do
+        expect { subject.network_defined?(subnet_string) }.not_to raise_error
+      end
+    end
+
+    context "when IPAM information is missing" do
+      let(:docker_network_struct) do
+        [
+          {
+            "Name": "bridge",
+            "Id": "ae74f6cc18bbcde86326937797070b814cc71bfc4a6d8e3e8cf3b2cc5c7f4a7d",
+            "Created": "2019-03-20T14:10:06.313314662-07:00",
+            "Scope": "local",
+            "Driver": "bridge",
+            "EnableIPv6": false,
             "Internal": false,
             "Attachable": false,
             "Ingress": false,

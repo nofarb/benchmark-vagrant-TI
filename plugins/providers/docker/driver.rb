@@ -36,7 +36,7 @@ module VagrantPlugins
             # Check for podman format when it is emulating docker CLI.
             # Podman outputs the full hash of the container on
             # the last line after a successful build.
-            match = result.split.select { |str| str.match?(/[0-9a-z]{64}/) }.last
+            match = result.split.select { |str| str.match?(/^[0-9a-z]{64}/) }.last
             return match[0..7] unless match.nil?
           else
             matches = result.scan(/Successfully built (.+)$/i).last
@@ -348,9 +348,9 @@ module VagrantPlugins
 
         network_info = inspect_network(all_networks)
         network_info.each do |network|
-          config = Array(network["IPAM"]["Config"])
-          if (config.size > 0 &&
-            config.first["Subnet"] == subnet_string)
+          config = Array(network.dig("IPAM", "Config"))
+          next if config.empty? || !config.first.is_a?(Hash)
+          if (config.first["Subnet"] == subnet_string)
             @logger.debug("Found existing network #{network["Name"]} already configured with #{subnet_string}")
             return network["Name"]
           end

@@ -428,7 +428,7 @@ en:
           Please use with caution, as some of the features may not be fully
           functional yet.
         features: |-
-          You have requested to enabled the experimental flag with the following features:
+          You have requested to enable the experimental flag with the following features:
 
           Features:  %{features}
 
@@ -2160,7 +2160,7 @@ en:
         name_invalid: |-
           The sub-VM name '%{name}' is invalid. Please don't use special characters.
         network_ip_ends_in_one: |-
-          You assigned a static IP ending in ".1" to this machine.
+          You assigned a static IP ending in ".1" or ":1" to this machine.
           This is very often used by the router and can cause the
           network to not work properly. If the network doesn't work
           properly, try changing this IP.
@@ -2661,6 +2661,7 @@ en:
           exporting: Exporting NFS shared folders...
           installing: "Installing NFS client..."
           mounting: Mounting NFS shared folders...
+          mounting_entry: "%{hostpath} => %{guestpath}"
           v4_with_udp_warning: |-
 
             WARNING: Invalid NFS settings detected!
@@ -2701,7 +2702,7 @@ en:
         share_folders:
           creating: Creating shared folders metadata...
           mounting: Mounting shared folders...
-          mounting_entry: "%{guestpath} => %{hostpath}"
+          mounting_entry: "%{hostpath} => %{guestpath}"
           nomount_entry: "Automounting disabled: %{hostpath}"
         set_default_nic_type:
           e1000_warning: |-
