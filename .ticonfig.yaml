@@ -24,3 +24,14 @@ config:
     - "**/*.json"
     - "**/*.js"
     - "**/*.hcl"
+    - "**/*.md"
+    - "**/*dev-build"
+    - "**/*generate-licences"
+    - "**/*nightly-build"
+    - "**/*release"
+    - "**/*release-initiator"
+
+
+
+
+
