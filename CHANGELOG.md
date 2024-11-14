@@ -1,4 +1,4 @@
-## 2.4.3.dev (UNRELEASED)
+## 2.4.4.dev (UNRELEASED)
 
 FEATURES:
 
@@ -6,9 +6,17 @@ IMPROVEMENTS:
 
 BUG FIXES:
 
-- core: Relax constraint on logger dependency [GH-13532]
-
 VAGRANT-GO:
+
+## 2.4.3 (November 12, 2024)
+
+IMPROVEMENTS:
+
+- command/cloud: Support HCP authentication [GH-13540]
+
+BUG FIXES:
+
+- core: Relax constraint on logger dependency [GH-13532]
 
 ## 2.4.2 (November 01, 2024)
 
