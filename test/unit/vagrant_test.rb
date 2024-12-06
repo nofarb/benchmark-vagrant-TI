@@ -3,6 +3,13 @@
 
 require File.expand_path("../base", __FILE__)
 
+describe "Dummy Test Example" do
+  it "is a dummy test that always passes" do
+    expect(true).to eq(true)
+  end
+end
+
+
 describe Vagrant do
   include_context "unit"
 
