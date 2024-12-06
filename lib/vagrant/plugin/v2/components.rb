@@ -6,7 +6,7 @@ module Vagrant
     module V2
       # This is the container class for the components of a single plugin.
       # This allows us to separate the plugin class which defines the
-      # components, and the actual container of those components. This
+      # components, and the actual container of those components. This 
       # removes a bit of state overhead from the plugin class itself.
       class Components
         # This contains all the action hooks.
