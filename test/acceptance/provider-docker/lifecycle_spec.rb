@@ -58,7 +58,7 @@ shared_examples "provider/docker/lifecycle" do |provider, options|
       status("Test: halt")
       assert_execute("vagrant", "halt")
 
-      status("Test: ssh doesn't work during halted state")
+      status("Test: ssh doesn't work during halted state ")
       assert_not_running
 
       status("Test: up after halt")
